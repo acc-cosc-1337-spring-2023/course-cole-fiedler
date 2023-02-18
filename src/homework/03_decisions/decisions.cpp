@@ -45,14 +45,68 @@ string get_letter_grade_using_switch(int grade)
         letter = "A";
         return letter;
         break;
+            case 0:
             switch(grade <= 89 && grade >= 80)
             {
-             case 2:
-                letter = "B"
+             case 1:
+                letter = "B";
                 return letter;
                 break;
+                    case 0:
+                    switch(grade <= 79 && grade >= 70)
+                    {
+                     case 1:
+                     letter = "C";
+                     return letter;
+                     break;
+                        case 0:
+                        switch(grade <= 69 && grade >= 60)
+                        {
+                         case 1:
+                         letter = "D";
+                         return letter;
+                         break;
+                            case 0:
+                            switch(grade <= 59 && grade >= 00)
+                            {
+                                case 1:
+                                letter = "F";
+                                return letter; 
+                                break;
+                                    case 0:
+                                    switch(grade < 0 || grade > 100)
+                                    {
+                                        case 1:
+                                        letter = "Invalid entry, number is out of range.";
+                                        return letter;
+                                        break;
+                                    }
+                            }
+                        }
+                    }
             }
     }
     
      
+}
+
+string menu(int num)
+{
+    string option;
+
+    switch(num)
+    {
+     case 1:
+        option = "Option 1";
+        return option;
+        break;
+     case 2:
+        option = "Option 2";
+        return option;
+        break;
+     case 3:
+        option = "Option 3";
+        return option;
+        break;
+    }
 }

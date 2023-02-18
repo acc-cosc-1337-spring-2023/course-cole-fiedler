@@ -89,7 +89,8 @@ string get_letter_grade_using_switch(int grade)
     
      
 }
-
+// The following function definition is for a switch that will interprete the user's
+// selection from the main menu. 
 string menu(int num)
 {
     string option;

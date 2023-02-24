@@ -7,6 +7,7 @@ TEST_CASE("Verify Test Configuration", "verification")
 	REQUIRE(true == true);
 }
 
+// Write unit test for factorial function
 TEST_CASE("Test factorial function", "Verify function produces accurate factorials for num value")
 {
 	REQUIRE(factorial(3) == 6); // red green go
@@ -14,3 +15,12 @@ TEST_CASE("Test factorial function", "Verify function produces accurate factoria
 	REQUIRE(factorial(6) == 720); // red green go
 }
 // All 3 assertions pass 
+
+// Write unit test for gcd function
+TEST_CASE("Test gcd function", "Verify function produces accurate gcd for num1 and num2 values")
+{
+	REQUIRE(gcd(5,15) == 5); // red green go
+	REQUIRE(gcd(21,28) == 7); // red green go
+	REQUIRE(gcd(25, 100) == 25); // red green go
+}
+// All 3 assertions pass

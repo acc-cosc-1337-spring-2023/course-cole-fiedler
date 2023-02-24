@@ -17,5 +17,5 @@ TEST_CASE("Test factorial function", "Verify function produces accurate factoria
 
 TEST_CASE("Test gdc function", "Verify function produces accurate gcd for two num values")
 {
-	REQUIRE(get_gcd(5,15) == 5);
+	REQUIRE(gcd(5,15) == 5);
 }

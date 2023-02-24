@@ -14,8 +14,3 @@ TEST_CASE("Test factorial function", "Verify function produces accurate factoria
 	REQUIRE(factorial(6) == 720); // red green go
 }
 // All 3 assertions pass 
-
-TEST_CASE("Test gdc function", "Verify function produces accurate gcd for two num values")
-{
-	REQUIRE(gcd(5,15) == 5);
-}

@@ -1,9 +1,9 @@
 //write include statements
-#include <iostream>
-#include "dna.h"
+#include <iostream> //include input output stream
+#include "dna.h" //include header file w/ function prototypes
 
 //write using statements
-using std::cout; 
+using std::cout; //tell c++ which specific cout and cin to use 
 using std::cin;
 
 /*
@@ -13,19 +13,19 @@ DNA string and call either get gc content or get dna complement
 function and display the result. Program runs as long as 
 user enters a y or Y.
 */
-int main()
+int main() //call main
 {
-	int choice = 0;
-	auto continue_menu = 'n';
+	int choice = 0; //initialize variables
+	auto continue_menu = 'n'; 
 
 	do
 	{
 		cout<<"Please choose from the following menu options:\n\t\t1-Factorial\n\t\t2-Greatest Common Divisor\n\t\t3-Exit\n";
 		cin>>choice;
-		menu_choice(choice);
-		cout<<"Enter y to continue...\n";
+		menu_choice(choice); //pass choice to menu function 
+		cout<<"Enter y to continue...\n"; //prompt user for input
 		cin>>continue_menu;
-	}while (continue_menu == 'y' || continue_menu == 'Y');
+	}while (continue_menu == 'y' || continue_menu == 'Y'); // repeat loop as long as user enters y or Y
 
 	return 0;
 }

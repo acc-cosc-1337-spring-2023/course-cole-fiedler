@@ -36,55 +36,39 @@ int gcd(int num1, int num2)
     return a;
 }
 
-int menu_choice()
+void menu_choice(int choice)
 {
-    int choice = 0;
-    int num_factorial = 0;
-    int greatest_divisor = 0;
-    int num = 0;
-    int num1 = 0;
-    int num2 = 0;
-    char exit = ' ';
+    auto num = 0;
+    auto num_factorial = 0;
+    auto num1 = 0;
+    auto num2 = 0;
+    auto num1_num2_gcd = 0;
 
-    do
+    if(choice == 1)
     {
-        cout<<"Please choose from the following options:\n\t1 - Factorial\n\t2 - Greatest Common Divisor\n\t3 - Exit\n";
-        cin>>choice;
-        
-        switch(choice)
-        {
-            case 1:
-            cout<<"Please enter a number:\t";
-            cin>>num;
-            num_factorial = factorial(num);
-            cout<<"\n\nYou entered:\t"<<num<<".\nWhich has a factorial of:\t"<<num_factorial;
-            break;
-
-            case 2:
-            cout<<"Please enter a number:\t";
-            cin>>num1;
-            cout<<"Please enter a second number:\t";
-            cin>>num2;
-            greatest_divisor = gcd(num1, num2);
-            cout<<"\n\nYou entered:\t"<<num1<<" and "<<num2;
-            cout<<"\nThe greatest common divisor between those numbers is:\t"<<greatest_divisor;
-            break;
-
-            case 3:
-            cout<<"nter 'Y' if you wish to exit this program. Any other choice will run the menu again.\n";
-            cin>>exit;
-                if(exit == 'Y' || exit == 'y')
-                {
-                    cout<<"Exiting program";
-                }
-                else
-                {
-                    menu_choice();
-                }
-            break;
-        }
+        cout<<"Please enter a number:\t";
+        cin>>num;
+        num_factorial = factorial(num);
+        cout<<"\nThe factorial of "<<num<<" is "<<num_factorial<<".\n\n";
     }
-    while(exit != 'Y' || exit != 'y');
+    else if(choice == 2)
+    {
+        cout<<"Please enter a number:\t";
+        cin>>num1;
+        cout<<"\nPlease enter a second number:\t";
+        cin>>num2;
+        num1_num2_gcd = gcd(num1, num2);
+        cout<<"\nThe greatest common divisor of "<<num1<<" and "<<num2<<" is "<<num1_num2_gcd<<".\n\n";
+    }
+    else if(choice == 3)
+    {
+        auto exit = 'n';
 
-    return 0;
+        do
+        {
+            cout<<"Are you sure you wish to exit?\nEnter y to exit.\n";
+            cin>>exit;
+
+        } while(exit != 'y' || exit != 'y');
+    }
 }

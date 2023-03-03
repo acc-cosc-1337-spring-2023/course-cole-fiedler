@@ -1,14 +1,10 @@
-/*
-use a vector of int with values 8, 4, 20, 88, 66, 99
+#include "func.h"
+#include <iostream>
 
-Prompt user for 1 for Get Max from vector and 2 for Get primes.
-Prompt user for a number and return max value or list of primes
-and display them to screen.
-Program continues until user decides to exit.
+using std::string; using std::cout; using std::cin;
 
-*/
 int main() 
 {
-
+	display_menu();
 	return 0;
 }

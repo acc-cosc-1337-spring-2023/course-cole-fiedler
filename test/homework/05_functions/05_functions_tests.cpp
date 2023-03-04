@@ -9,7 +9,6 @@ TEST_CASE("Verify Test Configuration", "verification")
 
 TEST_CASE("Verify get gc content returns correct percentage")
 {
-	std::string dna = "AGCTATAG";
-	REQUIRE(get_gc_content(dna) == .375);
-	//REQUIRE(get_gc_content("CGCTATAG") == .50);
+	REQUIRE(get_gc_content("AGCTATAG")== 37.5);
+	REQUIRE(get_gc_content("CGCTATAG") == 50);
 }

@@ -8,8 +8,8 @@ using std::string; using std::cout; using std::cin;
 double get_gc_content(const string& dna)         // evaluate string and output percentage of G and C values in the string
                                                  // ex: AGCTATAG is 3/8 or 37.5%
 {
-    int dna_len = 0;
-    int cg_count = 0;
+    double dna_len = 0;
+    double cg_count = 0;
     double percent = 0;
 
     for(int i = 0; i < dna.size(); i++)
@@ -17,14 +17,9 @@ double get_gc_content(const string& dna)         // evaluate string and output p
         if(dna[i] == 'c' || dna[i] == 'C' || dna[i] == 'g' || dna[i] == 'G') // evaluate dna[i] char value
         {
             cg_count++;
-            dna_len++;
-        }
-        else
-        {
-            dna_len++;
         }
     }
-    return percent = (cg_count / dna_len) * 100;
+    return percent = (cg_count / dna.length()) * 100;
 }
 
 string get_dna_complement(string dna) // output matching dna sequence by converting complementary values to matching value

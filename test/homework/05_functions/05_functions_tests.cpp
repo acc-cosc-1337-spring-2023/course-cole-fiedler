@@ -19,6 +19,14 @@ TEST_CASE("Verify get gc content returns correct percentage")
 // write test case for get_dna_complement
 TEST_CASE("Verify get dna complement returns correct string")
 {
-	REQUIRE(get_dna_complement("AAAACCCGGT") == "ACCGGGTTTT"); // red
-	REQUIRE(get_dna_complement("CCCGGAAAAT") == "ATTTTCCGGG"); // red
+	REQUIRE(get_dna_complement("AAAACCCGGT") == " ACCGGGTTTT"); // red
+	REQUIRE(get_dna_complement("CCCGGAAAAT") == " ATTTTCCGGG"); // red
 }
+
+// write test case for reverse_string
+TEST_CASE("Verify reverse string returns mirror of string entered")
+{
+	REQUIRE(reverse_string("AGCTATAG") == " GATATCGA"); // red green go
+	REQUIRE(reverse_string("CGCTATAG") == " GATATCGC"); // red green go
+}
+// all test cases pass

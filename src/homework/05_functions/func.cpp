@@ -8,7 +8,6 @@ using std::string; using std::cout; using std::cin;
 double get_gc_content(const string& dna)         // evaluate string and output percentage of G and C values in the string
                                                  // ex: AGCTATAG is 3/8 or 37.5%
 {
-    double dna_len = 0;
     double cg_count = 0;
     double percent = 0;
 
@@ -25,42 +24,39 @@ double get_gc_content(const string& dna)         // evaluate string and output p
 string get_dna_complement(string dna) // output matching dna sequence by converting complementary values to matching value
                                       // ex: AAAACCCGGT becomes ACCGGGTTTT (A becomes T, T becomes A, C becomes G, G becomes C)
 {   
-    std::string complement = " ";
-    auto a = 0;
-    auto t = 0;
-    auto c = 0;
-    auto g = 0;
-
     for(int i = 0; i < dna.size(); i++)
     {
-        if(dna[i] == 'a' || dna[i] == 'A')
+        if(dna[i] == 't' || dna[i] == 'T')
         {
-            t++;
-        }
-        else if(dna[i] == 't' || dna[i] == 'T')
-        {
-            a++;
-        }
-        else if(dna[i] == 'c' || dna[i] == 'C')
-        {
-            g++;
+            dna[i] = 'A';
         }
         else if(dna[i] == 'g' || dna[i] == 'G')
         {
-            c++;
+            dna[i] = 'C';
+        }
+        else if(dna[i] == 'c' || dna[i] == 'C')
+        {
+            dna[i] = 'G';
+        }
+        else if(dna[i] == 'a' || dna[i] == 'A')
+        {
+            dna[i] = 'T';
         }
     }
-    for(int i = 0; i < t; i++)
-    {
-        
-    }
-    return complement;
+    return dna;
 }
 
 string reverse_string(string dna) // output the opposite string that would complement the string as string is input
                                   // ex: input GTCA outpu TGAC (mirror image)
 {
-   
+    int n = dna.length();
+ 
+    // Swap character starting from two
+    // corners
+    for (int i = 0; i < n / 2; i++)
+    {
+        swap(str[i], str[n - i - 1]);
+    }
 }
 
 void display_menu() // this function displays menu and keeps excess code out of main

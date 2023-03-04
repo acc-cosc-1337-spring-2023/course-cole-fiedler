@@ -7,8 +7,18 @@ TEST_CASE("Verify Test Configuration", "verification")
 	REQUIRE(true == true);
 }
 
+// write test case for get_gc_content 
 TEST_CASE("Verify get gc content returns correct percentage")
 {
-	REQUIRE(get_gc_content("AGCTATAG")== 37.5);
-	REQUIRE(get_gc_content("CGCTATAG") == 50);
+	REQUIRE(get_gc_content("AGCTATAG")== 37.5); // red green go
+	REQUIRE(get_gc_content("CGCTATAG") == 50);  // red green go
+	REQUIRE(get_gc_content("CGCTACCG") == 75);	// red green go
+}
+// all test cases pass
+
+// write test case for get_dna_complement
+TEST_CASE("Verify get dna complement returns correct string")
+{
+	REQUIRE(get_dna_complement("AAAACCCGGT") == "ACCGGGTTTT"); // red
+	REQUIRE(get_dna_complement("CCCGGAAAAT") == "ATTTTCCGGG"); // red
 }

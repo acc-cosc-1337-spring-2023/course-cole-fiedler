@@ -13,16 +13,16 @@ class TicTacToe
 {
 public:
     bool game_over();
-    void start_game(string first_player);
+    void start_game(std::string first_player);
     void mark_board(int position);
-    string get_player() const{return player;}
+    std::string get_player() const{return player;}
     void display_board() const;
 private:
     void set_next_player();
     bool check_board_full();
     void clear_board();
-    string player;
-    vector<string>peg ( 9 , " " );
-}
+    std::string player;
+    std::vector<std::string> pegs = std::vector<std::string> (9, " ");
+};
 
 #endif

@@ -9,9 +9,8 @@ using std::cout; using std::cin; using std::string; using std::vector;
 bool TicTacToe::game_over()
 {
     char choice = ' ';
-    bool over = check_board_full();
-
-    if(over = true)
+    bool over = false;
+    if(over != false)
     {
         std::cout<<"Game over!!!\n";
         std::cout<<"Would you like to play again? Y/N....\t"; // play again loop if user chooses to
@@ -20,11 +19,9 @@ bool TicTacToe::game_over()
         {
             run_menu(); // restart program if prompted 
         }
-        else
-        {
-            std::cout<<"Exiting..."; // exit if prompted 
-        }
     }
+    over = check_board_full();
+    return over;
 }
 
 void TicTacToe::start_game(std::string first_player)
@@ -39,8 +36,7 @@ void TicTacToe::start_game(std::string first_player)
         std::cin>>position;
         mark_board(position);
         display_board();
-        over = game_over();
-        set_next_player();  
+        over = game_over(); 
     }while (over != true);
 }
 
@@ -58,7 +54,7 @@ string TicTacToe::get_player()
 void TicTacToe::display_board()
 {
     int n = pegs.size();
-    for(int i = 0; i < n+1; i++)
+    for(int i = 0; i <= n; i++)
     {
         if(i == 0 || i == 1 || i == 3 || i == 4 || i == 6 || i == 7)
         {
@@ -75,11 +71,11 @@ void TicTacToe::set_next_player()
 {
     if(player == "X")
     {
-        player == "O";
+        player = "O";
     }
-    else
+    else if (player == "O")
     {
-        player == "X"; 
+        player = "X";
     }
 }
 
@@ -87,7 +83,7 @@ bool TicTacToe::check_board_full()
 {
     bool full = false; 
     int n = pegs.size();
-    for(int i = 0; i < n+1; i++) //vector<string>::const_iterator i = pegs.begin(); i != pegs.end(); ++i
+    for(int i = 0; i <= n; i++)
    {
         if(pegs[i] == " ")
         {
@@ -104,7 +100,7 @@ bool TicTacToe::check_board_full()
 void TicTacToe::clear_board()
 {
     int n = pegs.size();
-    for(int i = 0; i < n+1; i++)
+    for(int i = 0; i <= n; i++)
     {
         pegs[i] = " ";
     }
@@ -113,7 +109,7 @@ void TicTacToe::clear_board()
 void run_menu()
 {
     std::string first_player = " ";
-    std::cout<<"\nEnter X or O...\t";
+    std::cout<<"\nEnter X or O. Capital letters only...\t";
     cin>>first_player;
     if(first_player == "X" || first_player == "O")
     {

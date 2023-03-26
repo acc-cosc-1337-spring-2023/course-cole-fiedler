@@ -8,20 +8,9 @@ using std::cout; using std::cin; using std::string; using std::vector;
 
 bool TicTacToe::game_over()
 {
-    char choice = ' ';
-    bool over = false;
-    if(over != false)
-    {
-        std::cout<<"Game over!!!\n";
-        std::cout<<"Would you like to play again? Y/N....\t"; // play again loop if user chooses to
-        std::cin>>choice;
-        if(choice == 'Y' || choice == 'y')
-        {
-            run_menu(); // restart program if prompted 
-        }
-    }
-    over = check_board_full();
-    return over;
+    bool full = false;
+    full = check_board_full();
+    return full;
 }
 
 void TicTacToe::start_game(std::string first_player)
@@ -37,7 +26,7 @@ void TicTacToe::start_game(std::string first_player)
         mark_board(position);
         display_board();
         over = game_over(); 
-    }while (over != true);
+    } while (over != true);
 }
 
 void TicTacToe::mark_board(int position)
@@ -81,21 +70,21 @@ void TicTacToe::set_next_player()
 
 bool TicTacToe::check_board_full()
 {
-    bool full = false; 
-    int n = pegs.size();
-    for(int i = 0; i <= n; i++)
-   {
+    bool full = false;
+    for(int i = 0; i <= pegs.size(); i++)
+    {
         if(pegs[i] == " ")
         {
             full = false;
-        } 
-        else
-        {
-            full = true;
         }
     }
+    for(int i = 0; i<=pegs.size(); i++)
+    {
+        if(pegs[i] != " ")
+        full = true;
+    }
     return full;
-}
+}   
 
 void TicTacToe::clear_board()
 {

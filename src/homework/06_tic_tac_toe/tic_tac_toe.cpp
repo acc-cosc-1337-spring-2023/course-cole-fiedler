@@ -1,10 +1,12 @@
 //cpp
-#include <tic_tac_toe.h>
-#include <iostream>
-#include <string>
-#include <vector>
+#include <tic_tac_toe.h> // include .h file for class TTT
+#include <iostream> // include input/output stream
+#include <string> // include std::string
+#include <vector> // include std::vector
 
 using std::cout; using std::cin; using std::string; using std::vector;
+// tell c++ specifically which cout, cin, string, and vector to use 
+// from standard library
 
 bool TicTacToe::game_over() // returns check board full function return value
 {
@@ -72,7 +74,7 @@ bool TicTacToe::check_board_full() // iterate over vector pegs with boolean logi
 
 void TicTacToe::clear_board() // sets all 9 elements of vector pegs to blank space
 {
-    for(int i = 0; i <= pegs.size(); i++) // iterate over vector pegs
+    for(int i = 0; i < pegs.size(); i++) // iterate over vector pegs
     {
         pegs[i] = " "; // assign each element to blank space 
     }

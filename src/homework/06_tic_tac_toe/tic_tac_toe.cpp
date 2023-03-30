@@ -8,11 +8,47 @@ using std::cout; using std::cin; using std::string; using std::vector;
 // tell c++ specifically which cout, cin, string, and vector to use 
 // from standard library
 
-bool TicTacToe::game_over() // returns check board full function return value
+bool TicTacToe::game_over() // 
 {
-    bool full = false; // initialize full = false 
-    full = check_board_full(); // assign full to return value of check board full
-    return full; // return bool value to function
+    bool over = false;
+    over = check_column_win(); // initialize bool variable over with return value of column win function
+    if(over = true) // if over true, return over, call set winner function
+    {
+        return over;
+        set_winner();
+    }
+    else // if false, continue testing function return values
+    {
+        over = check_row_win(); // assign bool variable over with return value of row win function
+        if(over = true) // if over true, return over, call set winner
+        {
+            return over;
+            set_winner();
+        }
+        else // if false, continue testing function return values
+        {
+            over = check_diagonal_win(); // assign bool variable over with return value of diag win function
+            if(over = true) // if over true, return over, call set winner
+            {
+                return over;
+                set_winner();
+            }
+            else // if false, test to see if board is full
+            {
+                over = check_board_full(); // assign bool variable over with return value of board full function
+                if(over = true) // if over true, assign winner to value of C and return over
+                {
+                    winner = "C";
+                    return over;
+                }
+                else // if all functions return false, over is still false, return over 
+                {
+                    over = false;
+                    return over;
+                }
+            }
+        }
+    }
 }
 
 void TicTacToe::start_game(std::string first_player) // accepts first player parameter and gets game ready to start
@@ -27,14 +63,14 @@ void TicTacToe::mark_board(int position) // accepts position pararmeter and mark
     set_next_player(); // call set next player private function
 }
 
-string TicTacToe::get_player() // return private variable player 
+string TicTacToe::get_player() const // return private variable player 
 {
     return player; // returns player
 }
 
-void TicTacToe::display_board() // iterate vector of strings to display a board shape
+void TicTacToe::display_board() const // iterate vector of strings to display a board shape
 {
-    for(int i = 0; i <= pegs.size(); i++) // iterate over entire vector of pegs
+    for(int i = 0; i < pegs.size(); i++) // iterate over entire vector of pegs
     {
         if(i == 0 || i == 1 || i == 3 || i == 4 || i == 6 || i == 7)
         {
@@ -80,6 +116,133 @@ void TicTacToe::clear_board() // sets all 9 elements of vector pegs to blank spa
     }
 }
 
+std::string TicTacToe::get_winner()
+{
+    return winner;
+}
+
+bool TicTacToe::check_column_win()
+{
+    bool cwin = false; // initialize bool variable cwin to false
+    if(pegs[0] == "X" && pegs[3] == "X" && pegs[6] == "X") // check left column for all X's
+    {
+        cwin = true; // if all values X, assign cwin to true, return cwin
+        return cwin;
+    }
+    else if(pegs[0] == "O" && pegs[3] == "O" && pegs[6] == "O") // check left column for all O's
+    {
+        cwin = true; // if all values O, assign cwin to true, return cwin
+        return cwin;
+    }
+    else if(pegs[1] == "X" && pegs[4] == "X" && pegs[7] == "X") // check middle column for all X's
+    {
+        cwin = true; // if all values X, assign to true, return cwin
+        return cwin;
+    }
+    else if(pegs[1] == "O" && pegs[4] == "O" && pegs[7] == "O") // check middle column for all O's
+    {
+        cwin = true; // if all values O, assign to true, return cwin
+        return cwin;
+    }
+    else if(pegs[2] == "X" && pegs[5] == "X" && pegs[8] == "X") // check right column for all X's
+    {
+        cwin = true; // if all values X, assign to true, return cwin
+        return cwin;
+    }
+    else if(pegs[2] == "O" && pegs[5] == "O" && pegs[8] == "O") // check right column for all O's
+    {
+        cwin = true; // if all values O, assign to true, return cwin
+        return cwin;
+    }
+    else
+    {
+        cwin = false; // if no column checks return true, assign cwin to false, return cwin
+        return cwin;
+    }
+}
+
+bool TicTacToe::check_row_win()
+{
+    bool rwin = false; // initialize bool variable rwin to false
+    if(pegs[0] == "X" && pegs[1] == "X" && pegs[2] == "X") // check top row for all X's
+    {
+        rwin = true; // if all values X, assign to true, return rwin
+        return rwin;
+    }
+    else if(pegs[0] == "O" && pegs[1] == "O" && pegs[2] == "O") // check top row for all O's
+    {
+        rwin = true; // if all values o, assign to true, return rwin
+        return rwin;
+    }
+    else if(pegs[3] == "X" && pegs[4] == "X" && pegs[5] == "X") // check middle row for all X's
+    {
+        rwin = true; // if all values x, assign to true, return rwin
+        return rwin;
+    }
+    else if(pegs[3] == "O" && pegs[4] == "O" && pegs[5] == "O") // check middle row for all O's
+    {
+        rwin = true; // if all values o, assign to true, return rwin
+        return rwin;
+    }
+    else if(pegs[6] == "X" && pegs[7] == "X" && pegs[8] == "X") // check bottom row for all X's
+    {
+        rwin = true; // if all values x, assign to true, return rwin
+        return rwin;
+    }
+    else if(pegs[6] == "O" && pegs[7] == "O" && pegs[8] == "O") // check bottom row for all O's
+    {
+        rwin = true; // if all values o, assign to true, return rwin
+        return rwin; 
+    }   
+    else // if no row checks return true, assign rwin to false, return rwin
+    {
+        rwin = false; 
+        return rwin; 
+    }
+}
+
+bool TicTacToe::check_diagonal_win()
+{
+    bool dwin = false; // initialize bool variable dwin to false
+    if(pegs[0] == "X" && pegs[4] == "X" && pegs[8] == "X") // check diag L to R for all X's
+    {
+        dwin = true; // if all values X, assign to true, return dwin
+        return dwin;
+    }
+    else if(pegs[0] == "O" && pegs[4] == "O" && pegs[8] == "O") // check diag L to R for all O's
+    {
+        dwin = true; // if all values o, assign to true, return dwin
+        return dwin;
+    }
+    else if(pegs[2] == "X" && pegs[4] == "X" && pegs[6] == "X") // check diag R to L for all X's
+    {
+        dwin = true; // if all values x, assign to true, return dwin
+        return dwin;
+    }
+    else if(pegs[2] == "O" && pegs[4] == "O" && pegs[6] == "O") // check diag R to L for all O's
+    {
+        dwin = true; // if all values o, assign to true, return dwin
+        return dwin;
+    }
+    else // if no diag checks return true, assign dwin to false, return dwin
+    {
+        dwin = false;
+        return dwin; 
+    }
+}
+
+void TicTacToe::set_winner()
+{
+  if(player == "X") // if player is now X, winner is previous player, O
+    {
+        winner = "O";
+    }
+    else if (player == "O") // if player is now O, winner is previous player X
+    {
+        winner = "X";
+    } // no return value becasue winner has been modified 
+}
+
 void run_menu()
 {
     std::string first_player = " ";
@@ -122,7 +285,7 @@ void run_game(std::string first_player) // take validated input from user and fe
         {
             game.start_game(first_player); // if bad input is given, call start game function and try again
         }
-    } while (over != true); // continue looping while over is not equal to true
+    } while (over = false); // continue looping while over is not equal to true
 
     std::cout<<"Game over!!!\nWould you like to play again?...Y/N\t";
     std::cin>>choice;
@@ -135,3 +298,13 @@ void run_game(std::string first_player) // take validated input from user and fe
         std::cout<<"Exiting....\n";
     }
 }
+
+/*
+Original game_over();
+bool TicTacToe::game_over() // returns check board full function return value
+{
+    bool full = false; // initialize full = false 
+    full = check_board_full(); // assign full to return value of check board full
+    return full; // return bool value to function
+}
+*/

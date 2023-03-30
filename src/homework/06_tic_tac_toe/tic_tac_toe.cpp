@@ -241,6 +241,7 @@ void TicTacToe::set_winner()
     {
         winner = "X";
     } // no return value becasue winner has been modified 
+    std::cout<<"The winner is player "<<winner<<"!!!"<<std::endl;
 }
 
 void run_menu()
@@ -287,7 +288,7 @@ void run_game(std::string first_player) // take validated input from user and fe
         }
     } while (over = false); // continue looping while over is not equal to true
 
-    std::cout<<"Game over!!!\nWould you like to play again?...Y/N\t";
+    std::cout<<"Game Over!!!\nWould you like to play again?...Y/N\t";
     std::cin>>choice;
     if(choice == 'y' || choice == 'Y')
     {

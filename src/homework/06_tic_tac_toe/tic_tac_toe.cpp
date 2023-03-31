@@ -8,47 +8,20 @@ using std::cout; using std::cin; using std::string; using std::vector;
 // tell c++ specifically which cout, cin, string, and vector to use 
 // from standard library
 
-bool TicTacToe::game_over() // 
+bool TicTacToe::game_over() 
 {
-    bool over = false;
-    over = check_column_win(); // initialize bool variable over with return value of column win function
-    if(over = true) // if over true, return over, call set winner function
+    bool is_game_over = false;
+    if (check_column_win() || check_row_win() || check_diagonal_win())
     {
-        return over;
+        is_game_over = true;
         set_winner();
     }
-    else // if false, continue testing function return values
+    else if (check_board_full())
     {
-        over = check_row_win(); // assign bool variable over with return value of row win function
-        if(over = true) // if over true, return over, call set winner
-        {
-            return over;
-            set_winner();
-        }
-        else // if false, continue testing function return values
-        {
-            over = check_diagonal_win(); // assign bool variable over with return value of diag win function
-            if(over = true) // if over true, return over, call set winner
-            {
-                return over;
-                set_winner();
-            }
-            else // if false, test to see if board is full
-            {
-                over = check_board_full(); // assign bool variable over with return value of board full function
-                if(over = true) // if over true, assign winner to value of C and return over
-                {
-                    winner = "C";
-                    return over;
-                }
-                else // if all functions return false, over is still false, return over 
-                {
-                    over = false;
-                    return over;
-                }
-            }
-        }
+        is_game_over = true;
+        winner = "C";
     }
+    return is_game_over;
 }
 
 void TicTacToe::start_game(std::string first_player) // accepts first player parameter and gets game ready to start
@@ -98,7 +71,7 @@ void TicTacToe::set_next_player() // uses if/else structure to assign private pl
 bool TicTacToe::check_board_full() // iterate over vector pegs with boolean logic to determine if board is full
 {
     bool full = true; // initialize full to true then test whether full is actually true or not
-    for(int i = 0; i <= pegs.size(); i++) // iterate over vector to test each index location
+    for(int i = 0; i < pegs.size(); i++) // iterate over vector to test each index location
     {
         if(pegs[i] == " ")
         {
@@ -241,7 +214,6 @@ void TicTacToe::set_winner()
     {
         winner = "X";
     } // no return value becasue winner has been modified 
-    std::cout<<"The winner is player "<<winner<<"!!!"<<std::endl;
 }
 
 void run_menu()
@@ -267,28 +239,33 @@ void run_game(std::string first_player) // take validated input from user and fe
     bool over = false; // initialize over = false for do while loop
     int position = 0; // initialize postion = 0 for mark board function
     char choice = ' '; // initialize choice = ' ' for user choice of whether or not to play again
+    std::string game_winner = " "; // initialize game winner with empty string 
 
     TicTacToe game; // create instance of TicTacToe class named game
     game.start_game(first_player); // game calls start game function from TTT class
     do
     {
-        std::cout<<"Please enter a postion to mark...1-9\t";
+        std::cout<<"Please enter a postion to mark...1-9\nEnter 0 to quit the game...\t";
         std::cin>>position;
-        if(position > 0 && position < 10)
-        // validate position input. if acceptable, pass to mark board function
+        if(position > 0 && position < 10) // validate user entered data to avoid GIGO
         {
             game.mark_board(position);
             over = game.game_over();
             game.display_board();
         }
-        else
-        // handle bad data. avoid garbage in garbage out
+        else if(position < 0 || position > 9) // if invalid input, prompt for correct input
         {
-            game.start_game(first_player); // if bad input is given, call start game function and try again
+            std::cout<<"Invalid position entry...Please enter a position 1-9...\n";
+            game.start_game(first_player);
         }
-    } while (over = false); // continue looping while over is not equal to true
-
-    std::cout<<"Game Over!!!\nWould you like to play again?...Y/N\t";
+        else // 
+        {
+            over = true;
+        }
+    } while (over != true); // continue looping while over is not equal to true
+    game_winner = game.get_winner();
+    std::cout<<"Game Over!!! Player "<<game_winner<<" wins!\n";
+    std::cout<<"Would you like to play again?...Y/N\t";
     std::cin>>choice;
     if(choice == 'y' || choice == 'Y')
     {
@@ -307,5 +284,50 @@ bool TicTacToe::game_over() // returns check board full function return value
     bool full = false; // initialize full = false 
     full = check_board_full(); // assign full to return value of check board full
     return full; // return bool value to function
+}
+
+Updated game_over
+Returned over before setting winner. Overly complicated decision structure 
+bool TicTacToe::game_over() // 
+{
+    bool over = false;
+    over = check_column_win();
+    if(over == true) // if check column win returns true, return over
+    {
+        return over;
+        set_winner();
+    }
+    else // if false, continue testing function return values
+    {
+        over = check_row_win(); // assign bool variable over with return value of row win function
+        if(over == true) // if over true, return over, call set winner
+        {
+            return over;
+            set_winner();
+        }
+        else // if false, continue testing function return values
+        {
+            over = check_diagonal_win(); // assign bool variable over with return value of diag win function
+            if(over == true) // if over true, return over, call set winner
+            {
+                return over;
+                set_winner();
+            }
+            else // if false, test to see if board is full
+            {
+                over = check_board_full(); // assign bool variable over with return value of board full function
+                if(over == true) // if over true, assign winner to value of C and return over
+                {
+                    winner = "C";
+                    return over;
+                }
+                else // if all functions return false, over is still false, return over 
+                {
+                    over = false;
+                    return over;
+                }
+            }
+        }
+    }
 }
 */

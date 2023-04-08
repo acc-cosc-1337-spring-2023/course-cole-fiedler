@@ -354,9 +354,7 @@ void TicTacToeManager::update_winner_count(std::string winner)
 /*
 void TicTacToeManager::get_winner_total(int& o_wins, int& x_wins, int& ties)
 {
-    cout<<"X wins:\t"<<x_wins<<std::endl;
-    cout<<"O wins:\t"<<o_wins<<std::endl;
-    cout<<"Ties:\t"<<ties<<std::endl;
+    
 }
 */
 

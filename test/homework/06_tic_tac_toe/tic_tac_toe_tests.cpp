@@ -228,4 +228,55 @@ TEST_CASE("Verify that x win counter increments properly")
 	game.mark_board(3); // X
 	REQUIRE(game.game_over() == true);
 	REQUIRE(game.get_winner() == "X"); // require x winner
+	mgr.save_game(game);
+}
+
+TEST_CASE("Verify that o win counter increments properly")
+{
+	TicTacToe game;
+	TicTacToeManager mgr;
+	std::string first_player = "O";
+	game.start_game(first_player);
+	REQUIRE(game.game_over() == false);
+	game.mark_board(1); // X
+	REQUIRE(game.game_over() == false);
+	game.mark_board(4); // O
+	REQUIRE(game.game_over() == false);
+	game.mark_board(2); // X
+	REQUIRE(game.game_over() == false);
+	game.mark_board(5); // O
+	REQUIRE(game.game_over() == false);
+	game.mark_board(3); // X
+	REQUIRE(game.game_over() == true);
+	REQUIRE(game.get_winner() == "O"); // require O winner
+	mgr.save_game(game);
+}
+
+TEST_CASE("Verify that ties counter increments properly")
+{
+	TicTacToe game;
+	TicTacToeManager mgr;
+	std::string first_player = "X";
+	game.start_game(first_player);
+	REQUIRE(game.game_over() == false);
+	game.mark_board(1);
+	REQUIRE(game.game_over() == false);
+	game.mark_board(5);
+	REQUIRE(game.game_over() == false);
+	game.mark_board(9);
+	REQUIRE(game.game_over() == false);
+	game.mark_board(3);
+	REQUIRE(game.game_over() == false);
+	game.mark_board(7);
+	REQUIRE(game.game_over() == false);
+	game.mark_board(8);
+	REQUIRE(game.game_over() == false);
+	game.mark_board(2);
+	REQUIRE(game.game_over() == false);
+	game.mark_board(4);
+	REQUIRE(game.game_over() == false);
+	game.mark_board(6);
+	REQUIRE(game.game_over() == true);
+	REQUIRE(game.get_winner() == "C"); 
+	mgr.save_game(game);
 }

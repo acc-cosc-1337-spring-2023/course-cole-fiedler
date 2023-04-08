@@ -41,21 +41,6 @@ string TicTacToe::get_player() const // return private variable player
     return player; // returns player
 }
 
-void TicTacToe::display_board() const // iterate vector of strings to display a board shape
-{
-    for(int i = 0; i < pegs.size(); i++) // iterate over entire vector of pegs
-    {
-        if(i == 0 || i == 1 || i == 3 || i == 4 || i == 6 || i == 7)
-        {
-            std::cout<<pegs[i]<<" | "; // puts vertical lines where necessary 
-        }
-        else
-        {
-            std::cout<<pegs[i]<<std::endl; // starts a new line where necessary
-        }
-    }
-}
-
 void TicTacToe::set_next_player() // uses if/else structure to assign private player variable to next player
 {
     if(player == "X") // if x just went, o is up
@@ -216,6 +201,8 @@ void TicTacToe::set_winner()
     } // no return value becasue winner has been modified 
 }
 
+// FREE FUNCTIONS!!!
+
 void run_menu()
 {
     std::string first_player = " ";
@@ -237,7 +224,7 @@ void run_menu()
 void run_game(std::string first_player) // take validated input from user and feed into run game function
 {
     bool over = false; // initialize over = false for do while loop
-    int position = 0; // initialize postion = 0 for mark board function
+    //int position = 0; // initialize postion = 0 for mark board function
     char choice = ' '; // initialize choice = ' ' for user choice of whether or not to play again
     std::string game_winner = " "; // initialize game winner with empty string 
 
@@ -245,23 +232,20 @@ void run_game(std::string first_player) // take validated input from user and fe
     game.start_game(first_player); // game calls start game function from TTT class
     do
     {
-        std::cout<<"Please enter a postion to mark...1-9\nEnter 0 to quit the game...\t";
-        std::cin>>position;
-        if(position > 0 && position < 10) // validate user entered data to avoid GIGO
-        {
-            game.mark_board(position);
-            over = game.game_over();
-            game.display_board();
-        }
-        else if(position < 0 || position > 9) // if invalid input, prompt for correct input
-        {
-            std::cout<<"Invalid position entry...Please enter a position 1-9...\n";
-            game.start_game(first_player);
-        }
-        else // 
-        {
-            over = true;
-        }
+        //std::cout<<"Please enter a postion to mark...1-9\nEnter 0 to quit the game...\t";
+        //cin>>position;
+        game.mark_board(position);
+        over = game.game_over();
+        //game.display_board(); // replace this with overloaded ostream function. make sure it displays board 
+        //else if(position < 0 || position > 9) // if invalid input, prompt for correct input
+        //{
+        //    std::cout<<"Invalid position entry...Please enter a position 1-9...\n";
+        //    game.start_game(first_player);
+        //}
+        //else // over = true if user inputs 0 to end game 
+        //{
+        //    over = true;
+        //}
     } while (over != true); // continue looping while over is not equal to true
     game_winner = game.get_winner();
     std::cout<<"Game Over!!! Player "<<game_winner<<" wins!\n";
@@ -277,8 +261,50 @@ void run_game(std::string first_player) // take validated input from user and fe
     }
 }
 
-/*
-Original game_over();
+std::ostream& operator<<(std::ostream& out, const TicTacToe& game)
+{
+    for(int i = 0; i < pegs.size(); i++) // iterate over entire vector of pegs
+    {
+        if(i == 0 || i == 1 || i == 3 || i == 4 || i == 6 || i == 7)
+        {
+            std::cout<<pegs[i]<<" | "; // puts vertical lines where necessary 
+        }
+        else
+        {
+            std::cout<<pegs[i]<<std::endl; // starts a new line where necessary
+        }
+    }
+    return out; 
+}
+
+std::istream& operator>>(std::istream& in, const TicTacToe &game)
+{
+    auto position = 0;
+    std::cout<<"Please enter a postion to mark...1-9\nEnter 0 to quit the game...\t";
+    cin>>position;
+    &game.mark_board(position);
+    return in;
+}
+/* 
+***OLD FUNCTIONS***
+
+Delete display_board() const and replace display board code with overloaded ostream function
+void TicTacToe::display_board() const // iterate vector of strings to display a board shape
+{
+    for(int i = 0; i < pegs.size(); i++) // iterate over entire vector of pegs
+    {
+        if(i == 0 || i == 1 || i == 3 || i == 4 || i == 6 || i == 7)
+        {
+            std::cout<<pegs[i]<<" | "; // puts vertical lines where necessary 
+        }
+        else
+        {
+            std::cout<<pegs[i]<<std::endl; // starts a new line where necessary
+        }
+    }
+}
+
+Original game_over() function code
 bool TicTacToe::game_over() // returns check board full function return value
 {
     bool full = false; // initialize full = false 

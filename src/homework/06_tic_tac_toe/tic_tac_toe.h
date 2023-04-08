@@ -18,6 +18,7 @@ public:
     void mark_board(int position);
     std::string get_player() const;
     std::string get_winner();
+    void display_board() const;
 private:
     void set_next_player();
     bool check_board_full();
@@ -30,8 +31,6 @@ private:
     std::string winner{};
     std::vector<std::string> pegs = std::vector<std::string> (9, " ");
     // Delete display_board() const function. Replace within overloaded ostream function
-    // void display_board() const;
-
 };
 #endif
 
@@ -46,7 +45,7 @@ public:
     void save_game(TicTacToe b); // add TTT to games vector with pushback, call update winner count, pass winner from TTT to update totals
     void get_winner_total(int& o_wins, int& x_wins, int& ties);
 private:
-    std::vector<TicTacToe> games;
+    std::vector<std::string> games = std::vector<std::string> (1, " ");
     int o_wins{0};
     int x_wins{0};
     int ties{0};

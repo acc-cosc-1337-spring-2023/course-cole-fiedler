@@ -228,5 +228,4 @@ TEST_CASE("Verify that x win counter increments properly")
 	game.mark_board(3); // X
 	REQUIRE(game.game_over() == true);
 	REQUIRE(game.get_winner() == "X"); // require x winner
-	REQUIRE(game.)
 }

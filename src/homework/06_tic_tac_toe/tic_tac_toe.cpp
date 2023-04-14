@@ -33,7 +33,7 @@ void TicTacToe::start_game(std::string first_player) // accepts first player par
     clear_board(); // call clear board function to reset vector
 }
 
-void TicTacToe::mark_board(int position) // accepts position pararmeter and marks vector with position selected by player
+void TicTacToe3::mark_3_board(int position) // accepts position pararmeter and marks vector with position selected by player
 {
     pegs[position -1] = player; // position -1 = pegs index to be marked. user sees 1-9 c++ sees 0-8
     set_next_player(); // call set next player private function
@@ -56,7 +56,7 @@ void TicTacToe::set_next_player() // uses if/else structure to assign private pl
     } // no return value becasue -player has been modified 
 }
 
-bool TicTacToe::check_board_full() // iterate over vector pegs with boolean logic to determine if board is full
+bool TicTacToe3::check_3_board_full() // iterate over vector pegs with boolean logic to determine if board is full
 {
     bool full = true; // initialize full to true then test whether full is actually true or not
     for(int i = 0; i < pegs.size(); i++) // iterate over vector to test each index location
@@ -69,7 +69,7 @@ bool TicTacToe::check_board_full() // iterate over vector pegs with boolean logi
     return full; // return bool value to game_over() to determine if game is over or not
 }   
 
-void TicTacToe::clear_board() // sets all 9 elements of vector pegs to blank space
+void TicTacToe3::clear_board() // sets all 9 elements of vector pegs to blank space
 {
     for(int i = 0; i < pegs.size(); i++) // iterate over vector pegs
     {
@@ -82,7 +82,7 @@ std::string TicTacToe::get_winner()
     return winner;
 }
 
-bool TicTacToe::check_column_win()
+bool TicTacToe3::check_3_column_win()
 {
     bool cwin = false; // initialize bool variable cwin to false
     if(pegs[0] == "X" && pegs[3] == "X" && pegs[6] == "X") // check left column for all X's
@@ -122,7 +122,7 @@ bool TicTacToe::check_column_win()
     }
 }
 
-bool TicTacToe::check_row_win()
+bool TicTacToe3::check_3_row_win()
 {
     bool rwin = false; // initialize bool variable rwin to false
     if(pegs[0] == "X" && pegs[1] == "X" && pegs[2] == "X") // check top row for all X's
@@ -162,7 +162,7 @@ bool TicTacToe::check_row_win()
     }
 }
 
-bool TicTacToe::check_diagonal_win()
+bool TicTacToe3::check_3_diagonal_win()
 {
     bool dwin = false; // initialize bool variable dwin to false
     if(pegs[0] == "X" && pegs[4] == "X" && pegs[8] == "X") // check diag L to R for all X's
@@ -204,7 +204,7 @@ void TicTacToe::set_winner()
     } // no return value becasue winner has been modified 
 }
 
-void TicTacToe::display_board() const // iterate vector of strings to display a board shape
+void TicTacToe3::display_board() const // iterate vector of strings to display a board shape
 {
     for(int i = 0; i < pegs.size(); i++) // iterate over entire vector of pegs
     {

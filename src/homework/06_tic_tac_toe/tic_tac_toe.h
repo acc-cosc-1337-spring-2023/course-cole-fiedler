@@ -37,7 +37,7 @@ private:
 #ifndef TIC_TAC_TOE_MANAGER_H
 #define TIC_TAC_TOE_MANAGER_H
 
-class TicTacToeManager
+class TicTacToeManager : public TicTacToe
 {
 friend std::ostream& operator<<(std::ostream& out, const TicTacToeManager &manager);
 
@@ -50,6 +50,30 @@ private:
     int x_wins{0};
     int ties{0};
     void update_winner_count(std::string winner);
+};
+#endif
+
+#ifndef TIC_TAC_TOE_3
+#define TIC_TAC_TOE_3
+
+class TicTacToe3 : public TicTacToe
+{
+public:
+
+private:
+
+};
+#endif
+
+#ifndef TIC_TAC_TOE_4
+#define TIC_TAC_TOE_4
+
+class TicTacToe4 : public TicTacToe
+{
+public:
+
+private:
+
 };
 #endif
 

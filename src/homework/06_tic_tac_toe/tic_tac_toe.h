@@ -14,7 +14,6 @@ friend std::ostream& operator<<(std::ostream& out, const TicTacToe &game);
 friend std::istream& operator>>(std::istream& in, const TicTacToe  &game);
 
 public:
-    bool game_over();
     void start_game(std::string first_player);
     void mark_board(int position);
     std::string get_player() const;
@@ -27,11 +26,6 @@ public:
     std::string player{};
     std::string winner{};
     //std::vector<std::string> pegs; // protect vector of pegs and remove initalizer
-protected:
-    virtual bool check_column_win();
-    virtual bool check_row_win();
-    virtual bool check_diagonal_win();
-    // Delete display_board() const function. Replace within overloaded ostream function
 };
 #endif
 
@@ -59,10 +53,10 @@ private:
 
 class TicTacToe3 : public TicTacToe
 {
-    TicTacToe3(); 
 public:
     void display_board() const;
     void clear_board();
+    bool game_over();
 private:
     virtual bool check_3_column_win();
     virtual bool check_3_row_win();
@@ -70,7 +64,7 @@ private:
     bool check_3_board_full();
     void mark_3_board(int position);
     std::vector<std::string> pegs = std::vector<std::string> (9, " ");
-}
+};
 #endif
 
 #ifndef TIC_TAC_TOE_4
@@ -78,7 +72,6 @@ private:
 
 class TicTacToe4 : public TicTacToe
 {
-    TicTacToe4();
 public:
     
 private:

@@ -11,10 +11,10 @@ using std::cout; using std::cin; using std::string; using std::vector;
 //
 // *** TICTACTOE CLASS FUNCTIONS AND FREE FUNCTIONS ***
 // 
-bool TicTacToe::game_over() 
+bool TicTacToe3::game_over() 
 {
     bool is_game_over = false;
-    if (check_column_win() || check_row_win() || check_diagonal_win())
+    if (check_3_column_win() || check_3_row_win() || check_3_diagonal_win())
     {
         is_game_over = true;
         set_winner();
@@ -243,46 +243,94 @@ void run_game(std::string first_player) // take validated input from user and fe
 {
     bool over = false; // initialize over = false for do while loop
     int position = 0; // initialize postion = 0 for mark board function
+    int size = 0;
     char choice = ' '; // initialize choice = ' ' for user choice of whether or not to play again
     std::string game_winner = " "; // initialize game winner with empty string 
 
-    TicTacToe game; // create instance of TicTacToe class named game
-    TicTacToeManager mgr; // create an instance of TicTacToeManager class named mgr 
-    game.start_game(first_player); // game calls start game function from TTT class
-    do
+    std::cout<<"Would you like to play on a 3x3 board or 4x4 board?\nEnter 3 or 4...\t";
+    std::cin>>size;
+    if(size == 3)
     {
-        std::cout<<"Please enter a postion to mark...1-9\nEnter 0 to quit the game...\t";
-        cin>>position;
-        if(position > 0 && position < 10)
+        TicTacToe3 game;
+        TicTacToeManager mgr;
+        game.start_game(first_player); // game calls start game function from TTT class
+        do
         {
-            game.mark_board(position);
-            over = game.game_over();
-            game.display_board();
-        }
-        else if(position < 0 || position > 9) // if invalid input, prompt for correct input
+            std::cout<<"Please enter a postion to mark...1-9\nEnter 0 to quit the game...\t";
+            cin>>position;
+            if(position > 0 && position < 10)
+            {
+                game.mark_board(position);
+                over = game.game_over();
+                game.display_board();
+            }
+            else if(position < 0 || position > 9) // if invalid input, prompt for correct input
+            {
+                std::cout<<"Invalid position entry...Please enter a position 1-9...\n";
+                game.start_game(first_player);
+            }
+            else // over = true if user inputs 0 to end game 
+            {
+                over = true;
+            }
+        } while (over != true); // continue looping while over is not equal to true
+        game_winner = game.get_winner();
+        mgr.save_game(game);
+        std::cout<<"Would you like to play again?...Y/N\t";
+        std::cin>>choice;
+        if(choice == 'y' || choice == 'Y')
         {
-            std::cout<<"Invalid position entry...Please enter a position 1-9...\n";
-            game.start_game(first_player);
+            run_menu();
         }
-        else // over = true if user inputs 0 to end game 
+        else
         {
-            over = true;
+            std::cout<<"Exiting....\n";
         }
-    } while (over != true); // continue looping while over is not equal to true
-    game_winner = game.get_winner();
-    mgr.save_game(game);
-    std::cout<<"Would you like to play again?...Y/N\t";
-    std::cin>>choice;
-    if(choice == 'y' || choice == 'Y')
+    }
+    else if(size == 4)
     {
-        run_menu();
+        TicTacToe4 game;
+        TicTacToeManager mgr;
+        game.start_game(first_player); // game calls start game function from TTT class
+        do
+        {
+            std::cout<<"Please enter a postion to mark...1-9\nEnter 0 to quit the game...\t";
+            cin>>position;
+            if(position > 0 && position < 10)
+            {
+                game.mark_board(position);
+                over = game.game_over();
+                game.display_board();
+            }
+            else if(position < 0 || position > 9) // if invalid input, prompt for correct input
+            {
+                std::cout<<"Invalid position entry...Please enter a position 1-9...\n";
+                game.start_game(first_player);
+            }
+            else // over = true if user inputs 0 to end game 
+            {
+                over = true;
+            }
+        } while (over != true); // continue looping while over is not equal to true
+        game_winner = game.get_winner();
+        mgr.save_game(game);
+        std::cout<<"Would you like to play again?...Y/N\t";
+        std::cin>>choice;
+        if(choice == 'y' || choice == 'Y')
+        {
+            run_menu();
+        }
+        else
+        {
+            std::cout<<"Exiting....\n";
+        }
     }
     else
     {
-        std::cout<<"Exiting....\n";
+        std::cout<<"Invalid choice...please enter 3 or 4\n";
+        run_menu();
     }
 }
-
 
 std::ostream& operator<<(std::ostream& out, const TicTacToe& game)
 {

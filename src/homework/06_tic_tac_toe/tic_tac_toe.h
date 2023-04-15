@@ -82,9 +82,24 @@ private:
 class TicTacToe4
 {
 public:
-    
+    bool game_over_4();
+    void start_game_4(std::string first_player);
+    void mark_board_4(int postition);
+    std::string get_player_4() const;
+    std::string set_next_player_4();
+    bool check_board_full_4();
+    void clear_board_4();
+    std::string get_winner_4();
+    bool check_column_win_4();
+    bool check_row_win_4();
+    bool check_diagonal_win_4();
+    void set_winner_4();
+    void display_board_4() const;
 private:
-
+    std::vector<std::string> pegs_4 = std::vector<std::string> (16, " ");
+    std::string player_4{};
+    std::string winner_4{};
+    int position{};  
 };
 #endif
 

@@ -4,12 +4,12 @@
 
 using std::string; using std::vector;
 
+/*
 #ifndef TIC_TAC_TOE_H
 #define TIC_TAC_TOE_H
 
 class TicTacToe
 {
-    //TicTacToe(int size) : pegs(size * size, " "){};
 friend std::ostream& operator<<(std::ostream& out, const TicTacToe &game);
 friend std::istream& operator>>(std::istream& in, const TicTacToe  &game);
 
@@ -25,19 +25,20 @@ public:
     void set_winner();
     std::string player{};
     std::string winner{};
-    //std::vector<std::string> pegs; // protect vector of pegs and remove initalizer
+    std::vector<std::string> pegs; 
 };
 #endif
+*/
 
 #ifndef TIC_TAC_TOE_MANAGER_H
 #define TIC_TAC_TOE_MANAGER_H
 
-class TicTacToeManager : public TicTacToe
+class TicTacToeManager
 {
 friend std::ostream& operator<<(std::ostream& out, const TicTacToeManager &manager);
 
 public:
-    void save_game(TicTacToe b); // add TTT to games vector with pushback, call update winner count, pass winner from TTT to update totals
+    //void save_game(TicTacToe b); // add TTT to games vector with pushback, call update winner count, pass winner from TTT to update totals
     void get_winner_total(int& o_wins, int& x_wins, int& ties);
 private:
     std::vector<std::string> games = std::vector<std::string> (10, " ");
@@ -51,34 +52,39 @@ private:
 #ifndef TIC_TAC_TOE_3
 #define TIC_TAC_TOE_3
 
-class TicTacToe3 : public TicTacToe
+class TicTacToe3
 {
 public:
-    void display_board() const;
-    void clear_board();
-    bool game_over();
+    bool game_over_3();
+    void start_game_3(std::string first_player);
+    void mark_board_3(int postition);
+    std::string get_player_3() const;
+    std::string set_next_player_3();
+    bool check_board_full_3();
+    void clear_board_3();
+    std::string get_winner_3();
+    bool check_column_win_3();
+    bool check_row_win_3();
+    bool check_diagonal_win_3();
+    void set_winner_3();
+    void display_board_3() const;
 private:
-    virtual bool check_3_column_win();
-    virtual bool check_3_row_win();
-    virtual bool check_3_diagonal_win();
-    bool check_3_board_full();
-    void mark_3_board(int position);
-    std::vector<std::string> pegs = std::vector<std::string> (9, " ");
+    std::vector<std::string> pegs_3 = std::vector<std::string> (9, " ");
+    std::string player_3{};
+    std::string winner_3{};
+    int position{};  
 };
 #endif
 
 #ifndef TIC_TAC_TOE_4
 #define TIC_TAC_TOE_4
 
-class TicTacToe4 : public TicTacToe
+class TicTacToe4
 {
 public:
     
 private:
-    std::vector<std::string> pegs = std::vector<std::string> (16, " ");
-    virtual bool check_4_column_win();
-    virtual bool check_4_row_win();
-    virtual bool check_4_diagonal_win();
+
 };
 #endif
 

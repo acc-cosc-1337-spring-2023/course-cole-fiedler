@@ -8,60 +8,58 @@ using std::cout; using std::cin; using std::string; using std::vector;
 // tell c++ specifically which cout, cin, string, and vector to use 
 // from standard library
 
-//
-// *** TICTACTOE CLASS FUNCTIONS AND FREE FUNCTIONS ***
-// 
-bool TicTacToe3::game_over() 
+bool TicTacToe3::game_over_3()
 {
     bool is_game_over = false;
-    if (check_3_column_win() || check_3_row_win() || check_3_diagonal_win())
+    if (check_column_win_3() || check_row_win_3() || check_diagonal_win_3())
     {
         is_game_over = true;
-        set_winner();
+        set_winner_3();
     }
-    else if (check_board_full())
+    else if (check_board_full_3())
     {
         is_game_over = true;
-        winner = "C";
+        winner_3 = "C";
     }
     return is_game_over;
 }
 
-void TicTacToe::start_game(std::string first_player) // accepts first player parameter and gets game ready to start
+void TicTacToe3::start_game_3(std::string first_player) // accepts first player parameter and gets game ready to start
 {
-    player = first_player; // assign private string varaiable player the value of first_player
-    clear_board(); // call clear board function to reset vector
+    player_3 = first_player; // assign private string varaiable player the value of first_player
+    clear_board_3(); // call clear board function to reset vector
 }
 
-void TicTacToe3::mark_3_board(int position) // accepts position pararmeter and marks vector with position selected by player
+void TicTacToe3::mark_board_3(int position) // accepts position pararmeter and marks vector with position selected by player
 {
-    pegs[position -1] = player; // position -1 = pegs index to be marked. user sees 1-9 c++ sees 0-8
-    set_next_player(); // call set next player private function
+    pegs_3[position -1] = player_3; // position -1 = pegs index to be marked. user sees 1-9 c++ sees 0-8
+    set_next_player_3(); // call set next player private function
 }
 
-string TicTacToe::get_player() const // return private variable player 
+string TicTacToe3::get_player_3() const // return private variable player 
 {
-    return player; // returns player
+    return player_3; // returns player
 }
 
-void TicTacToe::set_next_player() // uses if/else structure to assign private player variable to next player
+std::string TicTacToe3::set_next_player_3()
 {
-    if(player == "X") // if x just went, o is up
+    if(player_3 == "X") // if x just went, o is up
     {
-        player = "O";
+        player_3 = "O";
     }
-    else if (player == "O") // if o just went, x is up
+    else if (player_3 == "O") // if o just went, x is up
     {
-        player = "X";
-    } // no return value becasue -player has been modified 
+        player_3 = "X";
+    } // no return value becasue player has been modified 
+    return player_3;
 }
 
-bool TicTacToe3::check_3_board_full() // iterate over vector pegs with boolean logic to determine if board is full
+bool TicTacToe3::check_board_full_3() // iterate over vector pegs with boolean logic to determine if board is full
 {
     bool full = true; // initialize full to true then test whether full is actually true or not
-    for(int i = 0; i < pegs.size(); i++) // iterate over vector to test each index location
+    for(int i = 0; i < pegs_3.size(); i++) // iterate over vector to test each index location
     {
-        if(pegs[i] == " ")
+        if(pegs_3[i] == " ")
         {
             full = false; // if even one blank space exists, the board is not full
         }
@@ -69,48 +67,48 @@ bool TicTacToe3::check_3_board_full() // iterate over vector pegs with boolean l
     return full; // return bool value to game_over() to determine if game is over or not
 }   
 
-void TicTacToe3::clear_board() // sets all 9 elements of vector pegs to blank space
+void TicTacToe3::clear_board_3() // sets all 9 elements of vector pegs to blank space
 {
-    for(int i = 0; i < pegs.size(); i++) // iterate over vector pegs
+    for(int i = 0; i < pegs_3.size(); i++) // iterate over vector pegs
     {
-        pegs[i] = " "; // assign each element to blank space 
+        pegs_3[i] = " "; // assign each element to blank space 
     }
 }
 
-std::string TicTacToe::get_winner()
+std::string TicTacToe3::get_winner_3()
 {
-    return winner;
+    return winner_3;
 }
 
-bool TicTacToe3::check_3_column_win()
+bool TicTacToe3::check_column_win_3()
 {
     bool cwin = false; // initialize bool variable cwin to false
-    if(pegs[0] == "X" && pegs[3] == "X" && pegs[6] == "X") // check left column for all X's
+    if(pegs_3[0] == "X" && pegs_3[3] == "X" && pegs_3[6] == "X") // check left column for all X's
     {
         cwin = true; // if all values X, assign cwin to true, return cwin
         return cwin;
     }
-    else if(pegs[0] == "O" && pegs[3] == "O" && pegs[6] == "O") // check left column for all O's
+    else if(pegs_3[0] == "O" && pegs_3[3] == "O" && pegs_3[6] == "O") // check left column for all O's
     {
         cwin = true; // if all values O, assign cwin to true, return cwin
         return cwin;
     }
-    else if(pegs[1] == "X" && pegs[4] == "X" && pegs[7] == "X") // check middle column for all X's
+    else if(pegs_3[1] == "X" && pegs_3[4] == "X" && pegs_3[7] == "X") // check middle column for all X's
     {
         cwin = true; // if all values X, assign to true, return cwin
         return cwin;
     }
-    else if(pegs[1] == "O" && pegs[4] == "O" && pegs[7] == "O") // check middle column for all O's
+    else if(pegs_3[1] == "O" && pegs_3[4] == "O" && pegs_3[7] == "O") // check middle column for all O's
     {
         cwin = true; // if all values O, assign to true, return cwin
         return cwin;
     }
-    else if(pegs[2] == "X" && pegs[5] == "X" && pegs[8] == "X") // check right column for all X's
+    else if(pegs_3[2] == "X" && pegs_3[5] == "X" && pegs_3[8] == "X") // check right column for all X's
     {
         cwin = true; // if all values X, assign to true, return cwin
         return cwin;
     }
-    else if(pegs[2] == "O" && pegs[5] == "O" && pegs[8] == "O") // check right column for all O's
+    else if(pegs_3[2] == "O" && pegs_3[5] == "O" && pegs_3[8] == "O") // check right column for all O's
     {
         cwin = true; // if all values O, assign to true, return cwin
         return cwin;
@@ -122,35 +120,35 @@ bool TicTacToe3::check_3_column_win()
     }
 }
 
-bool TicTacToe3::check_3_row_win()
+bool TicTacToe3::check_row_win_3()
 {
     bool rwin = false; // initialize bool variable rwin to false
-    if(pegs[0] == "X" && pegs[1] == "X" && pegs[2] == "X") // check top row for all X's
+    if(pegs_3[0] == "X" && pegs_3[1] == "X" && pegs_3[2] == "X") // check top row for all X's
     {
         rwin = true; // if all values X, assign to true, return rwin
         return rwin;
     }
-    else if(pegs[0] == "O" && pegs[1] == "O" && pegs[2] == "O") // check top row for all O's
+    else if(pegs_3[0] == "O" && pegs_3[1] == "O" && pegs_3[2] == "O") // check top row for all O's
     {
         rwin = true; // if all values o, assign to true, return rwin
         return rwin;
     }
-    else if(pegs[3] == "X" && pegs[4] == "X" && pegs[5] == "X") // check middle row for all X's
+    else if(pegs_3[3] == "X" && pegs_3[4] == "X" && pegs_3[5] == "X") // check middle row for all X's
     {
         rwin = true; // if all values x, assign to true, return rwin
         return rwin;
     }
-    else if(pegs[3] == "O" && pegs[4] == "O" && pegs[5] == "O") // check middle row for all O's
+    else if(pegs_3[3] == "O" && pegs_3[4] == "O" && pegs_3[5] == "O") // check middle row for all O's
     {
         rwin = true; // if all values o, assign to true, return rwin
         return rwin;
     }
-    else if(pegs[6] == "X" && pegs[7] == "X" && pegs[8] == "X") // check bottom row for all X's
+    else if(pegs_3[6] == "X" && pegs_3[7] == "X" && pegs_3[8] == "X") // check bottom row for all X's
     {
         rwin = true; // if all values x, assign to true, return rwin
         return rwin;
     }
-    else if(pegs[6] == "O" && pegs[7] == "O" && pegs[8] == "O") // check bottom row for all O's
+    else if(pegs_3[6] == "O" && pegs_3[7] == "O" && pegs_3[8] == "O") // check bottom row for all O's
     {
         rwin = true; // if all values o, assign to true, return rwin
         return rwin; 
@@ -162,25 +160,25 @@ bool TicTacToe3::check_3_row_win()
     }
 }
 
-bool TicTacToe3::check_3_diagonal_win()
+bool TicTacToe3::check_diagonal_win_3()
 {
     bool dwin = false; // initialize bool variable dwin to false
-    if(pegs[0] == "X" && pegs[4] == "X" && pegs[8] == "X") // check diag L to R for all X's
+    if(pegs_3[0] == "X" && pegs_3[4] == "X" && pegs_3[8] == "X") // check diag L to R for all X's
     {
         dwin = true; // if all values X, assign to true, return dwin
         return dwin;
     }
-    else if(pegs[0] == "O" && pegs[4] == "O" && pegs[8] == "O") // check diag L to R for all O's
+    else if(pegs_3[0] == "O" && pegs_3[4] == "O" && pegs_3[8] == "O") // check diag L to R for all O's
     {
         dwin = true; // if all values o, assign to true, return dwin
         return dwin;
     }
-    else if(pegs[2] == "X" && pegs[4] == "X" && pegs[6] == "X") // check diag R to L for all X's
+    else if(pegs_3[2] == "X" && pegs_3[4] == "X" && pegs_3[6] == "X") // check diag R to L for all X's
     {
         dwin = true; // if all values x, assign to true, return dwin
         return dwin;
     }
-    else if(pegs[2] == "O" && pegs[4] == "O" && pegs[6] == "O") // check diag R to L for all O's
+    else if(pegs_3[2] == "O" && pegs_3[4] == "O" && pegs_3[6] == "O") // check diag R to L for all O's
     {
         dwin = true; // if all values o, assign to true, return dwin
         return dwin;
@@ -192,29 +190,29 @@ bool TicTacToe3::check_3_diagonal_win()
     }
 }
 
-void TicTacToe::set_winner()
+void TicTacToe3::set_winner_3()
 {
-  if(player == "X") // if player is now X, winner is previous player, O
+  if(player_3 == "X") // if player is now X, winner is previous player, O
     {
-        winner = "O";
+        winner_3 = "O";
     }
-    else if (player == "O") // if player is now O, winner is previous player X
+    else if (player_3 == "O") // if player is now O, winner is previous player X
     {
-        winner = "X";
+        winner_3 = "X";
     } // no return value becasue winner has been modified 
 }
 
-void TicTacToe3::display_board() const // iterate vector of strings to display a board shape
+void TicTacToe3::display_board_3() const // iterate vector of strings to display a board shape
 {
-    for(int i = 0; i < pegs.size(); i++) // iterate over entire vector of pegs
+    for(int i = 0; i < pegs_3.size(); i++) // iterate over entire vector of pegs
     {
         if(i == 0 || i == 1 || i == 3 || i == 4 || i == 6 || i == 7)
         {
-            std::cout<<pegs[i]<<" | "; // puts vertical lines where necessary 
+            std::cout<<pegs_3[i]<<" | "; // puts vertical lines where necessary 
         }
         else
         {
-            std::cout<<pegs[i]<<std::endl; // starts a new line where necessary
+            std::cout<<pegs_3[i]<<std::endl; // starts a new line where necessary
         }
     }
 }
@@ -253,29 +251,30 @@ void run_game(std::string first_player) // take validated input from user and fe
     {
         TicTacToe3 game;
         TicTacToeManager mgr;
-        game.start_game(first_player); // game calls start game function from TTT class
+        game.start_game_3(first_player); // game calls start game function from TTT class
         do
         {
             std::cout<<"Please enter a postion to mark...1-9\nEnter 0 to quit the game...\t";
             cin>>position;
             if(position > 0 && position < 10)
             {
-                game.mark_board(position);
-                over = game.game_over();
-                game.display_board();
+                game.mark_board_3(position);
+                over = game.game_over_3();
+                game.display_board_3();
             }
             else if(position < 0 || position > 9) // if invalid input, prompt for correct input
             {
                 std::cout<<"Invalid position entry...Please enter a position 1-9...\n";
-                game.start_game(first_player);
+                game.start_game_3(first_player);
             }
             else // over = true if user inputs 0 to end game 
             {
                 over = true;
             }
         } while (over != true); // continue looping while over is not equal to true
-        game_winner = game.get_winner();
-        mgr.save_game(game);
+        game_winner = game.get_winner_3();
+        cout<<"The player "<<game_winner<<" wins!\n";
+        //mgr.save_game(game);
         std::cout<<"Would you like to play again?...Y/N\t";
         std::cin>>choice;
         if(choice == 'y' || choice == 'Y')
@@ -291,7 +290,7 @@ void run_game(std::string first_player) // take validated input from user and fe
     {
         TicTacToe4 game;
         TicTacToeManager mgr;
-        game.start_game(first_player); // game calls start game function from TTT class
+        game.start_game_4(first_player); // game calls start game function from TTT class
         do
         {
             std::cout<<"Please enter a postion to mark...1-9\nEnter 0 to quit the game...\t";
@@ -332,41 +331,10 @@ void run_game(std::string first_player) // take validated input from user and fe
     }
 }
 
-std::ostream& operator<<(std::ostream& out, const TicTacToe& game)
-{
-    /*
-    int size = TicTacToe::pegs.size();
-
-    for(int i = 0; i < size; i++) // iterate over entire vector of pegs
-    {
-        if(i == 0 || i == 1 || i == 3 || i == 4 || i == 6 || i == 7)
-        {
-            out<<pegs[i]<<" | "; // puts vertical lines where necessary 
-        }
-        else
-        {
-            out<<pegs[i]<<std::endl; // starts a new line where necessary
-        }
-    }
-    return out; 
-    */
-}
-
-std::istream& operator>>(std::istream& in, const TicTacToe& game)
-{
-    /*
-    auto position = 0;
-    std::cout<<"Please enter a postion to mark...1-9\nEnter 0 to quit the game...\t";
-    cin>>position;
-    &game.mark_board(position);
-    return in;
-    */
-}
-
 //
 // *** TICTACTOE MANAGER CLASS FUNCTIONS AND FREE FUNCTIONS ***
 //
-
+/*
 void TicTacToeManager::save_game(TicTacToe game)
 {
     string game_winner = game.get_winner();
@@ -398,7 +366,7 @@ void TicTacToeManager::update_winner_count(std::string winner)
     cout<<"O wins:\t"<<o_wins<<std::endl;
     cout<<"Ties:\t"<<ties<<std::endl;
 }
-
+*/
 /*
 void TicTacToeManager::get_winner_total(int& o_wins, int& x_wins, int& ties)
 {

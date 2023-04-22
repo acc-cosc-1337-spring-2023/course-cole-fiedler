@@ -3,8 +3,9 @@
 #include <iostream> // include input/output stream
 #include <string> // include std::string
 #include <vector> // include std::vector
+#include <fstream> // work with files 
 
-using std::cout; using std::cin; using std::string; using std::vector;
+using std::cout; using std::cin; using std::string; using std::vector; using std::fstream;
 // tell c++ specifically which cout, cin, string, and vector to use 
 // from standard library
 
@@ -446,6 +447,30 @@ void TicTacToe4::display_board_4() const // iterate vector of strings to display
     }
 }
 
+void TicTacToe3::record_game_3()
+{
+    std::ofstream outfile ("game3.txt");
+    for(int i = 0; i < pegs_3.size(); i++)
+    {
+        outfile<<pegs_3[i];
+    }
+    outfile<<"\t"<<winner_3<<std::endl;
+    cout<<"Game history has been written to the file.\n";
+    outfile.close();
+}
+
+void TicTacToe4::record_game_4()
+{
+    std::ofstream outfile ("game4.txt");
+    for(int i = 0; i < pegs_4.size(); i++)
+    {
+        outfile<<pegs_4[i];
+    }
+    outfile<<"\t"<<winner_4<<std::endl;
+    cout<<"Game history has been written to the file.\n";
+    outfile.close();
+}
+
 // TICTACTOE FREE FUNCTIONS
 
 void run_menu()
@@ -519,7 +544,7 @@ void run_game(std::string first_player) // take validated input from user and fe
         }
         cout<<"Player "<<game_winner<<" wins!\n";
         cout<<"X wins:\t"<<x_wins<<std::endl<<"O wins:\t"<<o_wins<<std::endl<<"Ties:\t"<<ties<<std::endl;
-        //mgr.save_game(game);
+        game.record_game_3();
         std::cout<<"Would you like to play again?...Y/N\t";
         std::cin>>choice;
         if(choice == 'y' || choice == 'Y')
@@ -571,7 +596,7 @@ void run_game(std::string first_player) // take validated input from user and fe
             ties++;
         }
         cout<<"X wins:\t"<<x_wins<<std::endl<<"O wins:\t"<<o_wins<<std::endl<<"Ties:\t"<<ties<<std::endl;
-        //mgr.save_game(game);
+        game.record_game_4();
         std::cout<<"Would you like to play again?...Y/N\t";
         std::cin>>choice;
         if(choice == 'y' || choice == 'Y')

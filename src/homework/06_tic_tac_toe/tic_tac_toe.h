@@ -68,6 +68,7 @@ public:
     bool check_diagonal_win_3();
     void set_winner_3();
     void display_board_3() const;
+    void record_game_3();
 private:
     std::vector<std::string> pegs_3 = std::vector<std::string> (9, " ");
     std::string player_3{};
@@ -95,6 +96,7 @@ public:
     bool check_diagonal_win_4();
     void set_winner_4();
     void display_board_4() const;
+    void record_game_4();
 private:
     std::vector<std::string> pegs_4 = std::vector<std::string> (16, " ");
     std::string player_4{};
